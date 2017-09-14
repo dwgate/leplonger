@@ -7,6 +7,11 @@ in terminal to create css file
 */
 /*
 ================================================================================================
+MIXINS
+================================================================================================
+*/
+/*
+================================================================================================
 GLOBAL STYLES
 ================================================================================================
 */
@@ -28,7 +33,7 @@ body {
   background-size: 9%; }
 
 .panel-text h1, h2, h3, h4, h5, h6, tr, td {
-  color: black; }
+  color: #333333; }
 
 .cool-button {
   display: inline-block;
@@ -58,18 +63,28 @@ WEATHER BOXES
 .left-col {
   max-height: 600px;
   overflow: scroll;
-  background-color: rgba(255, 255, 255, 0.25);
+  overflow-x: hidden;
   margin: 0 5px 0 -6px;
   padding-left: 0; }
+  .left-col .weather-section:first-child {
+    border-top: none; }
+  .left-col .weather-section:last-child {
+    border-bottom: none; }
 
 .weather-section {
-  background-color: rgba(63, 68, 119, 0.75);
   min-height: 200px;
   overflow: hidden;
   margin: 0 0 5px 0;
   padding-top: 0;
   width: 107%;
-  padding-right: 15px; }
+  padding-right: 15px;
+  border: 1px solid grey; }
+  .weather-section:hover {
+    background-color: white;
+    border-color: black;
+    transition-property: background-color, border-color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in; }
   .weather-section h3 {
     margin: 2px 0 5px 0;
     padding: 0; }
@@ -81,12 +96,10 @@ WEATHER BOXES
 
 .forecast {
   font-size: 1.8rem;
-  margin-right: 10px;
-  color: #ffffff; }
+  margin-right: 10px; }
 
 .temp {
-  font-size: 2rem;
-  color: #f94040; }
+  font-size: 2rem; }
 
 .panel {
   background-color: none; }
@@ -118,9 +131,6 @@ CENTRAL MAP
   min-height: 600px;
   height: 100%;
   padding: 0; }
-
-#map {
-  background-color: red; }
 
 .map-container {
   padding: 0; }
@@ -166,10 +176,6 @@ SIGNUP FORMS
   margin-top: 5px;
   margin-bottom: 5px; }
 
-.junk {
-  background-color: red; }
-
-/*y tho*/
 /*
 ================================================================================================
 COMMENTS
@@ -179,7 +185,6 @@ COMMENTS
   width: 100%; }
 
 .review-title {
-  background-color: rgba(63, 68, 119, 0.75);
   margin: 0;
   padding: 10px 5px;
   text-align: center; }
@@ -206,12 +211,10 @@ COMMENTS
 .reviews-section {
   height: 600px;
   overflow: auto;
-  background-color: rgba(255, 255, 255, 0.25);
   margin: 0 -6px 0 5px;
   padding: 0px; }
 
 .comment {
-  background-color: rgba(63, 68, 119, 0.75);
   padding: 7px;
   margin: 5px 0; }
   .comment-right p {
@@ -251,12 +254,10 @@ INFO-WINDOW
 Dive Site DIVE SITE INFO
 ================================================================================================
 */
-.wave-chart {
-  background-color: rgba(63, 68, 119, 0.75); }
-  .wave-chart p {
-    font-size: 10px;
-    margin: 0;
-    padding: 0; }
+.wave-chart p {
+  font-size: 10px;
+  margin: 0;
+  padding: 0; }
 
 .label {
   font-size: 2px; }
@@ -265,16 +266,6 @@ Dive Site DIVE SITE INFO
   color: #a4b9f3; }
 
 .chart-title {
-  color: red;
-  background-color: rgba(63, 68, 119, 0.75); }
-
-.leplonger {
-  width: 107%;
-  background-color: rgba(63, 68, 119, 0.75);
-  color: #a4b9f3;
-  margin: 0 0 5px 0;
-  text-align: center;
-  margin-left: -6px;
-  padding: 10px 5px; }
+  color: red; }
 
 /*# sourceMappingURL=style.css.map */

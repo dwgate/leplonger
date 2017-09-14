@@ -10,7 +10,19 @@ $water: #ededed;
 $darkgrey: #e5e5e5;
 $lightgrey: #f7f7f7;
 
-
+/*
+================================================================================================
+MIXINS
+================================================================================================
+*/
+@mixin hoverTransition($properties, $duration: 0.3s) {
+  // @each $prop in $properties {
+  //   transition-property: #{$prop};
+  // }
+  transition-property: $properties;
+  transition-duration: $duration;
+  transition-timing-function: ease-in;
+}
 /*
 ================================================================================================
 GLOBAL STYLES
@@ -38,8 +50,9 @@ body {
   background-attachment: fixed;
   background-size: 9%;
 }
+
 .panel-text h1, h2, h3, h4, h5, h6, tr, td {
-  color: black;
+  color: lighten(black, 20%);
 }
 
 .cool-button {
@@ -72,18 +85,32 @@ WEATHER BOXES
 .left-col {
   max-height: 600px;
   overflow: scroll;
-  background-color: rgba(255, 255, 255, 0.25);
+  overflow-x: hidden;
   margin: 0 5px 0 -6px;
   padding-left: 0;
+  .weather-section:first-child {
+    border-top: none;
+  }
+  .weather-section:last-child {
+    border-bottom: none;
+  }
 }
 .weather-section {
-  background-color: rgba(63, 68, 119, 0.75);
 	min-height: 200px;
   overflow: hidden;
   margin: 0 0 5px 0;
   padding-top: 0;
   width: 107%;
   padding-right: 15px;
+  border: 1px solid grey;
+  &:hover {
+    background-color: white;
+    border-color: black;
+
+    $props: background-color,border-color;
+    @include hoverTransition($props);
+
+  }
   h3 {
     margin: 2px 0 5px 0;
     padding: 0;
@@ -98,11 +125,9 @@ WEATHER BOXES
 .forecast {
   font-size: 1.8rem;
   margin-right: 10px;
-  color: #ffffff;
 }
 .temp {
   font-size: 2rem;
-  color: #f94040;
 }
 
 .panel {
@@ -140,15 +165,9 @@ CENTRAL MAP
   padding: 0;
 }
 
-#map {
-  background-color: red;
-}
-
 .map-container {
   padding: 0;
 }
-
-
 
 /*
 ================================================================================================
@@ -197,10 +216,6 @@ SIGNUP FORMS
   margin-top: 5px;
   margin-bottom: 5px;
 }
-.junk {
-  background-color: red;
-}/*y tho*/
-
 
 /*
 ================================================================================================
@@ -213,7 +228,6 @@ COMMENTS
 }
 
 .review-title {
-  background-color: rgba(63, 68, 119, 0.75);
   margin: 0;
   padding: 10px 5px;
   text-align: center;
@@ -247,13 +261,11 @@ COMMENTS
 .reviews-section {
   height: 600px;
   overflow: auto;
-  background-color: rgba(255, 255, 255, 0.25);
   margin: 0 -6px 0 5px;
   padding: 0px;
 }
 
 .comment {
-  background-color: rgba(63, 68, 119, 0.75);
   padding: 7px;
   margin: 5px 0;
   &-right p {
@@ -267,7 +279,6 @@ COMMENTS
 .no-comment {
   margin-left: 10px;
 }
-
 
 /*
 ================================================================================================
@@ -306,7 +317,6 @@ Dive Site DIVE SITE INFO
 */
 
 .wave-chart {
-  background-color: rgba(63, 68, 119, 0.75);
   p {
     font-size: 10px;
     margin: 0;
@@ -324,17 +334,6 @@ Dive Site DIVE SITE INFO
 
 .chart-title {
   color: red;
-  background-color: rgba(63, 68, 119, 0.75);
-}
-
-.leplonger {
-  width: 107%;
-  background-color: rgba(63, 68, 119, 0.75);
-  color: $whateverBlue;
-  margin: 0 0 5px 0;
-  text-align: center;
-  margin-left: -6px;
-  padding: 10px 5px;
 }
 
 
