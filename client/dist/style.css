@@ -1,6 +1,8 @@
 /*
 ================================================================================================
 VARIABLES
+run: sass style.scss style.css
+in terminal to create css file
 ================================================================================================
 */
 /*
@@ -13,12 +15,7 @@ html {
 
 body {
   height: 100%;
-  overflow-x: hidden;
-  background-image: url("3.jpg");
-  background-repeat: no-repeat;
-  background-position: right top;
-  background-attachment: fixed;
-  background-size: 100%; }
+  background-color: #e5e5e5; }
 
 .col-headers {
   color: #082d8e; }
