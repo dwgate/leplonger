@@ -9,6 +9,7 @@ $whateverBlue: #a4b9f3;
 $water: #ededed;
 $darkgrey: #e5e5e5;
 $lightgrey: #f7f7f7;
+$hoverText: darken(#c0c0c0, 20%);
 
 /*
 ================================================================================================
@@ -75,8 +76,8 @@ body {
     background-color: #fff; /* fallback */
     background-color: white;
     border-color: #fff; /* fallback */
-    border-color: darken(#c0c0c0, 20%);
-    color: darken(#c0c0c0, 20%);
+    border-color: $hoverText;
+    color: $hoverText;
     transition: background-color 0.3s ease-in,
     border-color 0.3s ease-in;
   }
@@ -113,6 +114,7 @@ WEATHER BOXES
   &:hover {
     background-color: white;
     border-color: black;
+    color: $hoverText;
 
     $props: background-color,border-color;
     @include hoverTransition($props);
@@ -170,7 +172,7 @@ CENTRAL MAP
 	min-height: 600px;
   height: 100%;
   padding: 0;
-  box-shadow: 0px 5px 10px 0px darken(#c0c0c0, 20%);
+  box-shadow: 0px 5px 10px 0px $hoverText;
 }
 
 .map-container {
