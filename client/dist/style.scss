@@ -88,18 +88,15 @@ body {
 WEATHER BOXES
 ================================================================================================
 */
+.scroll {
+overflow: hidden;
+}
 .left-col {
   max-height: 600px;
   overflow: scroll;
   overflow-x: hidden;
   margin: 0 5px 0 -6px;
   padding-left: 0;
-  .weather-section:first-child {
-    border-top: none;
-  }
-  .weather-section:last-child {
-    border-bottom: none;
-  }
 }
 .weather-section {
   background-color: $water;
@@ -126,6 +123,12 @@ WEATHER BOXES
   }
   p {
     color: #dfdbdb;
+  }
+  &:first-child {
+    border-top: none;
+  }
+  &:last-child {
+    border-bottom: none;
   }
 }
 .pannel img {
