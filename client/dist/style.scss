@@ -16,12 +16,16 @@ MIXINS
 ================================================================================================
 */
 @mixin hoverTransition($properties, $duration: 0.3s) {
-  // @each $prop in $properties {
-  //   transition-property: #{$prop};
-  // }
   transition-property: $properties;
   transition-duration: $duration;
   transition-timing-function: ease-in;
+}
+
+@mixin balancePadding($padding, $side) {
+  padding: $padding;
+  @if ($side) {
+    padding-#{$side}: #{$padding/2px}px;
+  }
 }
 /*
 ================================================================================================
@@ -29,14 +33,13 @@ GLOBAL STYLES
 ================================================================================================
 */
 
-
 html {
   height: 100%;
 }
 
 body {
   height: 100%;
-  background-color: $darkgrey;
+  background-color: $water;
 }
 
 .col-headers {
@@ -57,21 +60,23 @@ body {
 
 .cool-button {
   display: inline-block;
-  width: 200px;
+  width: 100px;
   padding: 8px;
-  color: #fff;
+  color: #c0c0c0;
   border: 2px solid #fff;
   text-align: center;
   outline: none;
   text-decoration: none;
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: $lightgrey;
   transition: background-color 0.2s ease-out,
-  border-color 0.2s ease-out;
+              border-color 0.2s ease-out,
+              color 0.2s ease-out;
   &:hover, &:active {
     background-color: #fff; /* fallback */
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: white;
     border-color: #fff; /* fallback */
-    border-color: rgba(255, 255, 255, 0.4);
+    border-color: darken(#c0c0c0, 20%);
+    color: darken(#c0c0c0, 20%);
     transition: background-color 0.3s ease-in,
     border-color 0.3s ease-in;
   }
@@ -96,6 +101,7 @@ WEATHER BOXES
   }
 }
 .weather-section {
+  background-color: $water;
 	min-height: 200px;
   overflow: hidden;
   margin: 0 0 5px 0;
@@ -103,6 +109,7 @@ WEATHER BOXES
   width: 107%;
   padding-right: 15px;
   border: 1px solid grey;
+  transition: background-color 0.5s ease-out;
   &:hover {
     background-color: white;
     border-color: black;
@@ -163,6 +170,7 @@ CENTRAL MAP
 	min-height: 600px;
   height: 100%;
   padding: 0;
+  box-shadow: 0px 5px 10px 0px darken(#c0c0c0, 20%);
 }
 
 .map-container {
@@ -177,8 +185,8 @@ LOGIN FORMS
 
 .loginForm {
 	float: right;
-  padding: 20px;
   border: none;
+  @include balancePadding(15px, left);
 }
 
 input {
@@ -190,10 +198,14 @@ SIGNUP FORMS
 ================================================================================================
 */
 
+.menu {
+  padding: 0;
+}
+
 .signinForm {
   float: right;
-  padding: 20px;
   border: none;
+  @include balancePadding(15px, right);
 }
 
 .add_dive_site {

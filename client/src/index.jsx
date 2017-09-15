@@ -236,7 +236,8 @@ class App extends React.Component {
     return (
       <div className="container-fluid">
         <div className="row app-container">
-          <div>
+          <div className="col-md-9" />
+          <div className="menu col-md-3">
             <TopBar
               newDiveSite={this.addNewDiveSite}
               new_users={this.new_users}
