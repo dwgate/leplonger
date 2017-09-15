@@ -37,7 +37,7 @@ body {
 
 .cool-button {
   display: inline-block;
-  width: 100px;
+  width: 120px;
   padding: 8px;
   color: #c0c0c0;
   border: 2px solid #fff;
@@ -62,7 +62,8 @@ WEATHER BOXES
 ================================================================================================
 */
 .scroll {
-  overflow: hidden; }
+  overflow: hidden;
+  padding-right: 0px; }
 
 .left-col {
   max-height: 600px;
@@ -80,6 +81,7 @@ WEATHER BOXES
   width: 107%;
   padding-right: 15px;
   border: 1px solid grey;
+  border-left: none;
   transition: background-color 0.5s ease-out; }
   .weather-section:hover {
     background-color: white;
@@ -88,6 +90,9 @@ WEATHER BOXES
     transition-property: background-color, border-color;
     transition-duration: 0.3s;
     transition-timing-function: ease-in; }
+    .weather-section:hover > table > tbody > tr > td > img {
+      opacity: 1.0;
+      transition: opacity 0.3s ease-in; }
   .weather-section h3 {
     margin: 2px 0 5px 0;
     padding: 0; }
@@ -121,7 +126,9 @@ WEATHER BOXES
   font-size: 10px; }
 
 .weather-img {
-  display: block; }
+  display: block;
+  opacity: 0.2;
+  transition: opacity 0.5s ease-out; }
 
 .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
   padding: 0px; }
@@ -165,17 +172,11 @@ SIGNUP FORMS
 .menu {
   padding: 0; }
 
-.signinForm {
+.signinForm, .add_dive_site {
   float: right;
   border: none;
   padding: 15px;
   padding-right: 7.5px; }
-
-.add_dive_site {
-  float: right;
-  padding-right: 30px;
-  margin-top: 20px;
-  border: none; }
 
 .loginSheet {
   align-items: center; }
