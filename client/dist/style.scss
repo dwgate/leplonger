@@ -228,25 +228,21 @@ SIGNUP FORMS
   align-items: center;
 }
 
-.login {
+.login, .signup {
   border: none;
-  // margin-left: 25%;
-  // margin-right: 25%;
-
   width: 50%;
   margin: 0 auto;
-}
-.input-boxes {
-  display:inline;
-  text-align:right;
-  margin-top: 5px;
-  margin-bottom: 5px;
 }
 
 .user-input {
   padding: 0 3px;
-  margin: 4px;
+  margin: 4px 0;
   border-radius: 7px;
+}
+select {
+  height: 24px;
+  width: 120%;
+  color: $hoverText;
 }
 .exit {
   width: 60px;
@@ -255,6 +251,18 @@ SIGNUP FORMS
 .form-button {
   margin-left: 35%;
   margin-right: 35%;
+}
+
+.signup {
+  margin-top: 10px;
+  p {
+    color: $hoverText;
+    margin: 0;
+    margin-bottom: -5px;
+  }
+  &-button {
+    margin: 10px 32%;
+  }
 }
 
 /*
