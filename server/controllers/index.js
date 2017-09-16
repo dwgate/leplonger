@@ -1,5 +1,7 @@
-const models = require('../models');
 const sha1 = require('sha1');
+const async = require('async');
+const request = require('request');
+const models = require('../models');
 
 module.exports = {
   dives: {
@@ -109,23 +111,41 @@ module.exports = {
 
   weather: {
     get: ({ body }, res) => {
-      models.weather.get(`${body.location.lat},${body.location.lng}`, (err, data) => {
-        if (err) {
-          res.send(err);
-        } else {
-          res.json(data);
-        }
-      })
-    },
-    home: (req, res) => {
-      models.weather.home((err, data) => {
+      console.log('specific weather!!!!!!!!!!!!!');
+      const coordinates = `${body.location.lat},${body.location.lng}`;
+      models.weather.get(coordinates, (err, data) => {
         if (err) {
           res.send(err);
         } else {
           res.json(data);
         }
       });
-    }
+    },
+    home: (req, res) => {
+      async.parallel([
+        (callback) => {
+          models.weather.northernWeather((err, data) => {
+            callback(null, data);
+          });
+        },
+        (callback) => {
+          models.weather.centralWeather((err, data) => {
+            callback(null, data);
+          });
+        },
+        (callback) => {
+          models.weather.southernWeather((err, data) => {
+            callback(null, data);
+          });
+        },
+      ], (err, results) => {
+        if (!err) {
+          res.send(results);
+        } else {
+          res.send(err, 'fuck');
+        }
+      });
+    },
   },
 
   ocean: {

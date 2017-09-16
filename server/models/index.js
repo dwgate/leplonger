@@ -82,7 +82,7 @@ module.exports = {
   weather: {
     get: (location, callback) => {
       // uncomment url for actual use, disabled so we don't hit api limit
-      // const url = `http://api.wunderground.com/api/${Api.weatherUnderground}/geolookup/conditions/q/${location}.json`;
+      const url = `http://api.wunderground.com/api/${Api.weatherUnderground}/geolookup/conditions/q/${location}.json`;
       axios.get(url)
         .then(({ data }) => {
           callback(null, data);
@@ -92,29 +92,42 @@ module.exports = {
           callback(err, null);
         });
     },
-    home: (callback) => {
-      let homeWeather = [];
+    northernWeather: (callback) => {
       const norCalCoordinates = '37.7910,-122.5401';
-      const centralCalCoordinates = '35.3257,-120.9237';
-      const southCalCoordinates = '37.8267,-122.4233';
 
       axios.get(`https://api.darksky.net/forecast/${Api.darkSky}/${norCalCoordinates}`)
-        .then(({ data }) => {
-          homeWeather.push(data);
-          axios.get(`https://api.darksky.net/forecast/${Api.darkSky}/${centralCalCoordinates}`)
-            .then(({ data2 }) => {
-              homeWeather.push(data2);
-              axios.get(`https://api.darksky.net/forecast/${Api.darkSky}/${southCalCoordinates}`)
-                .then(({ data3 }) => {
-                  homeWeather.push(data3);
-                  callback(null, homeWeather);
-                });
-            });
-        })
-        .catch((err) => {
-          console.log('Error retrieving home page weather: ', err.message);
-          callback(err, null);
-        });
+      .then(({ data }) => {
+        callback(null, data);
+      })
+      .catch((err) => {
+        console.log('Error retrieving Norhtern California Weather: ', err.message);
+        callback(err, null);
+      });
+    },
+    centralWeather: (callback) => {
+      const centralCalCoordinates = '35.3257,-120.9237';
+
+      axios.get(`https://api.darksky.net/forecast/${Api.darkSky}/${centralCalCoordinates}`)
+      .then(({ data }) => {
+        callback(null, data);
+      })
+      .catch((err) => {
+        console.log('Error retrieving Central California Weather: ', err.message);
+        callback(err, null);
+      });
+    },
+    southernWeather: (callback) => {
+      console.log('attempting to gather South Cal weather');
+      const southCalCoordinates = '37.8267,-122.4233';
+
+      axios.get(`https://api.darksky.net/forecast/${Api.darkSky}/${southCalCoordinates}`)
+      .then(({ data }) => {
+        callback(null, data);
+      })
+      .catch((err) => {
+        console.log('Error retrieving Norhtern California Weather: ', err.message);
+        callback(err, null);
+      });
     },
   },
 
@@ -128,8 +141,6 @@ module.exports = {
 
       axios.get(`http://www.ndbc.noaa.gov/data/realtime2/${bouyId}.txt`)
         .then((result) => {
-          // const toFormat = result.data.split('\n').slice(0, 14);
-          // COMMENTED OUT because what the hell is it even doing
           const waveHeights = visUtils.formatData(result.data, 'WVHT');
           callback(null, { heights: waveHeights, id: bouyId });
         })
