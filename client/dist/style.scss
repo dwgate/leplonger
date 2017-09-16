@@ -168,9 +168,6 @@ padding-right: 0px;
   display: block;
   opacity: 0.2;
   transition: opacity 0.5s ease-out;
-  // &:hover {
-  //   opacity: 1.0;
-  // }
 }
 .table> tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
     padding: 0px;
@@ -227,25 +224,37 @@ SIGNUP FORMS
   @include balancePadding(15px, right);
 }
 
-// .add_dive_site {
-//   float: right;
-//   padding-right: 30px;
-//   margin-top: 20px;
-//   border: none;
-// }
-
 .loginSheet {
   align-items: center;
 }
 
-.loginUserName {
+.login {
   border: none;
+  // margin-left: 25%;
+  // margin-right: 25%;
+
+  width: 50%;
+  margin: 0 auto;
 }
 .input-boxes {
   display:inline;
   text-align:right;
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+.user-input {
+  padding: 0 3px;
+  margin: 4px;
+  border-radius: 7px;
+}
+.exit {
+  width: 60px;
+}
+
+.form-button {
+  margin-left: 35%;
+  margin-right: 35%;
 }
 
 /*

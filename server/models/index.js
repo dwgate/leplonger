@@ -82,7 +82,7 @@ module.exports = {
   weather: {
     get: (location, callback) => {
       // uncomment url for actual use, disabled so we don't hit api limit
-      const url = `http://api.wunderground.com/api/${Api.weatherUnderground}/geolookup/conditions/q/${location}.json`;
+      // const url = `http://api.wunderground.com/api/${Api.weatherUnderground}/geolookup/conditions/q/${location}.json`;
       axios.get(url)
         .then(({ data }) => {
           callback(null, data);

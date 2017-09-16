@@ -55,23 +55,22 @@ class TopBar extends React.Component {
               contentLabel="Example Modal"
               style={{
                 overlay: {
-                  background: 'rgba(255, 255, 255, 0.4)',
                   position: 'absolute',
                   top: '40px',
                   left: '1000px',
-                  height: 675,
+                  float: 'right',
+                  height: 0,
                 },
                 content: {
-                  background: 'rgba(63, 68, 119, 0.80)',
+                  background: '#e5e5e5',
                   maxWidth: 1000,
-                  height: 600,
+                  height: 200,
                   color: '#a4b9f3',
-                  right: '15px',
+                  right: '30px',
                 },
               }}
             >
-              <button className="cool-button" onClick={this.closeLoginModal}>&times;</button>
-              <h2>Log in</h2>
+              <button className="cool-button exit" onClick={this.closeLoginModal}>&times;</button>
               <Login
                 logIn={this.props.logIn}
                 close={this.closeLoginModal}
@@ -88,14 +87,14 @@ class TopBar extends React.Component {
             contentLabel="Example Modal"
             style={{
               overlay: {
-                background: 'rgba(255, 255, 255, 0.4)',
+                background: '#e5e5e5',
                 position: 'absolute',
                 top: '40px',
                 left: '1000px',
                 height: 675,
               },
               content: {
-                background: 'rgba(63, 68, 119, 0.80)',
+                background: '#e5e5e5',
                 maxWidth: 1000,
                 height: 600,
                 color: '#a4b9f3',
@@ -120,14 +119,14 @@ class TopBar extends React.Component {
               contentLabel="Example Modal"
               style={{
                 overlay: {
-                  background: 'rgba(255, 255, 255, 0.4)',
+                  background: '#e5e5e5',
                   position: 'absolute',
                   top: '40px',
                   left: '1000px',
                   height: 675,
                 },
                 content: {
-                  background: 'rgba(63, 68, 119, 0.80)',
+                  background: '#e5e5e5',
                   maxWidth: 1000,
                   height: 600,
                   color: '#a4b9f3',

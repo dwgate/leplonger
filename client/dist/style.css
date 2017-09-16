@@ -180,14 +180,28 @@ SIGNUP FORMS
 .loginSheet {
   align-items: center; }
 
-.loginUserName {
-  border: none; }
+.login {
+  border: none;
+  width: 50%;
+  margin: 0 auto; }
 
 .input-boxes {
   display: inline;
   text-align: right;
   margin-top: 5px;
   margin-bottom: 5px; }
+
+.user-input {
+  padding: 0 3px;
+  margin: 4px;
+  border-radius: 7px; }
+
+.exit {
+  width: 60px; }
+
+.form-button {
+  margin-left: 35%;
+  margin-right: 35%; }
 
 /*
 ================================================================================================
