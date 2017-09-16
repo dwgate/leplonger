@@ -33,7 +33,8 @@ class MarkerContainer extends React.Component {
             position={this.props.marker.position}
             onCloseClick={() => {
               this.props.showConditions(false);
-              this.displayInfoWindow}}
+              this.displayInfoWindow;
+            }}
           >
             <div className="info-window">
               <p className="site-name">{this.props.marker.name}</p>

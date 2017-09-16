@@ -13,6 +13,8 @@
   "rules": {
     "jest/no-identical-title": "error",
     "jest/valid-expect": "error",
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "jsx-a11y/href-no-hash": "off",
+    "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }]
   },
 }

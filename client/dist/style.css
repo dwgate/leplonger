@@ -67,9 +67,8 @@ WEATHER BOXES
 
 .left-col {
   max-height: 600px;
-  overflow: scroll;
+  overflow: auto;
   overflow-x: hidden;
-  margin: 0 5px 0 -6px;
   padding-left: 0; }
 
 .weather-section {
