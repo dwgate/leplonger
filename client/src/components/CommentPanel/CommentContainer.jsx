@@ -3,22 +3,22 @@ import Comment from './Comment.jsx';
 import CommentForm from './CommentForm.jsx';
 
 const CommentContainer = props => (
-  <div className="comment-container">
+  <div className="col-md-3 scroll-right">
+    <div className="right-col">
+      {props.comments.length > 0 ?
+        <h3 className="about review-title">Reviews for {props.currentsite.name}</h3>
+        : <h3 className="no-comment">
+            Sorry, there are no reviews for {props.currentsite.name} yet.
+          </h3>}
 
-    {props.comments.length > 0 ?
-      <h2 className="about review-title">Reviews for {props.currentsite.name}</h2>
-      : <h2 className="no-comment">
-          Sorry, there are no reviews for {props.currentsite.name} yet.
-        </h2>}
+      {props.comments.map(item =>
+        <Comment key={String(Math.random())} comments={item} />,
+      )}
 
-    {props.comments.map(item =>
-      <Comment key={String(Math.random())} comments={item} />,
-    )}
-
-    {(props.user)
-    ? <CommentForm user={props.user} site={props.currentsite} addNewComment={props.addNewComment} />
-    : null
-  }
+      {props.user &&
+      <CommentForm user={props.user} site={props.currentsite} addNewComment={props.addNewComment} />
+      }
+    </div>
   </div>
 );
 

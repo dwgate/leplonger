@@ -53,8 +53,8 @@ DROP TABLE IF EXISTS comments;
 
 CREATE TABLE comments (
   id INTEGER AUTO_INCREMENT PRIMARY KEY,
-  divesite_id INTEGER,
-  message  TEXT,
+  divesite_id SMALLINT NOT NULL,
+  message TEXT,
   user_id INT,
   date_1 DATETIME
 );

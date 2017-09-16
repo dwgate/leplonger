@@ -47,11 +47,15 @@ module.exports = {
   },
 
   comments: {
-    get: (req, res) => {
-      models.comments.get(req)
-        .then((response) => {
-          res.json(response);
-        });
+    get: ({ body }, res) => {
+      const diveSiteId = body.diveSite_id;
+      models.comments.get(diveSiteId, (err, data) => {
+        if (err) {
+          res.sendStatus(404);
+        } else {
+          res.send(data);
+        }
+      });
     },
     post: (req, res) => {
       models.comments.post(req.body, (err, data) => {

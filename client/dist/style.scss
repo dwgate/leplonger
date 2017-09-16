@@ -1,8 +1,8 @@
 /*
 ================================================================================================
-VARIABLES
 run: sass style.scss style.css
-in terminal to create css file
+in terminal to compile to css
+VARIABLES
 ================================================================================================
 */
 $whateverBlue: #a4b9f3;
@@ -33,10 +33,6 @@ MIXINS
 GLOBAL STYLES
 ================================================================================================
 */
-
-html {
-  height: 100%;
-}
 
 body {
   height: 100%;
@@ -89,15 +85,56 @@ WEATHER BOXES
 ================================================================================================
 */
 .scroll {
-overflow: hidden;
-padding-right: 0px;
-margin-left: -10px;
+  overflow: hidden;
+  padding-right: 0px;
+  margin-left: -10px;
 }
+
 .left-col {
   max-height: 600px;
   overflow: auto;
   overflow-x: hidden;
   padding-left: 0;
+}
+
+.scroll-right {
+  overflow: hidden;
+  padding-left: 0px;
+  margin-right: -10px;
+}
+.right-col {
+  max-height: 600px;
+  overflow: auto;
+  overflow-x: hidden;
+  padding-right: 0;
+}
+.comment-section {
+  background-color: $water;
+  border: 1px solid grey;
+  border-left: none;
+  border-right: none;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  transition: background-color 0.5s ease-out;
+  &:hover {
+    background-color: white;
+    border-color: black;
+    $props: background-color,border-color;
+    @include hoverTransition($props);
+    >p {
+      color: $hoverText;
+    }
+  }
+  p {
+    color: #dfdbdb;
+    transition: color 0.5s ease-out;
+  }
+  &:first-child {
+    border-top: none;
+  }
+  &:last-child {
+    border-bottom: none;
+  }
 }
 .weather-section {
   background-color: $water;
@@ -122,14 +159,19 @@ margin-left: -10px;
       opacity: 1.0;
       transition: opacity 0.3s ease-in;
     }
-
+    >p, .surface-table {
+      color: $hoverText;
+      transition: color 0.3s ease-in;
+    }
   }
+
   h3 {
     margin: 2px 0 5px 0;
     padding: 0;
   }
   p {
     color: #dfdbdb;
+    transition: color 0.5s ease-out;
   }
   &:first-child {
     border-top: none;
@@ -138,8 +180,12 @@ margin-left: -10px;
     border-bottom: none;
   }
 
-
+  .surface-table {
+    color: #dfdbdb;
+    transition: color 0.5s ease-out;
+  }
 }
+
 .pannel img {
   width: 60px;
 }
@@ -154,9 +200,8 @@ margin-left: -10px;
 .panel {
   background-color: none;
 }
-.data {
+.data, .info, .about {
   color: $whateverBlue;
-  font-weight: bold;
 }
 
 .weather-box {
@@ -172,10 +217,6 @@ margin-left: -10px;
 }
 .table> tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
     padding: 0px;
-}
-
-.info {
-  color: $whateverBlue;
 }
 /*
 ================================================================================================
@@ -349,6 +390,9 @@ INFO-WINDOW
   margin-top: 10px;
 }
 
+.description {
+  padding-right: 15px;
+}
 
 .more {
   display: inline;
@@ -361,20 +405,6 @@ INFO-WINDOW
 
 /*
 ================================================================================================
-Dive Site DIVE SITE INFO
+DIVE SITE INFO
 ================================================================================================
 */
-
-.label {
-  font-size: 2px;
-}
-
-.about {
-  color: $whateverBlue;
-}
-
-.chart-title {
-  color: red;
-}
-
-

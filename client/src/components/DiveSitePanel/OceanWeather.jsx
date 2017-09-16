@@ -1,16 +1,25 @@
 import React from 'react';
-import { Bar as Test } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
 const OceanWeather = props => (
   <div className="col-md-12 weather-section panel-text">
-    <Test
+    <Bar
       data={props.data}
       options={{
+        legend: { display: false },
         title: {
           display: true,
           text: 'Wave Height Last 12 Hours',
-          fontColor: '#000',
+          fontColor: '#8d8d8d',
           fontFamily: 'helvetica',
+        },
+        scales: {
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Height In Feet',
+            },
+          }],
         },
       }}
     />
@@ -24,7 +33,6 @@ OceanWeather.propTypes = {
 };
 
 OceanWeather.defaultProps = {
-  graphHeight: {},
   bouy: '...loading...',
   data: {},
 };

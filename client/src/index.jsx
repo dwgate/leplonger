@@ -89,6 +89,8 @@ class App extends React.Component {
 
     axios.post('/comments', { diveSite_id: site.id })
       .then((response) => {
+        console.log('COMMENTS\n\n\n');
+        console.log(response);
         this.setState({
           commentdata: response.data,
         });
@@ -270,17 +272,14 @@ class App extends React.Component {
             toggleInfoWindow={this.toggleInfoWindow}
             getWeather={this.getDiveSiteInfo}
           />
-
-          <div className="col-md-3 reviews-section">
-            {this.state.diveview &&
-              <CommentContainer
-                user={this.state.user}
-                currentsite={this.state.currentsite}
-                comments={this.state.commentdata}
-                addNewComment={this.addNewDiveSiteComment}
-              />
-            }
-          </div>
+          {this.state.diveview &&
+            <CommentContainer
+              user={this.state.user}
+              currentsite={this.state.currentsite}
+              comments={this.state.commentdata}
+              addNewComment={this.addNewDiveSiteComment}
+            />
+          }
 
         </div>
 
