@@ -2,7 +2,7 @@ import React from 'react';
 import { Bar as Test } from 'react-chartjs-2';
 
 const OceanWeather = props => (
-  <div className="wave-chart col-md-12 weather-section panel-text">
+  <div className="col-md-12 weather-section panel-text">
     <Test
       data={props.data}
       options={{

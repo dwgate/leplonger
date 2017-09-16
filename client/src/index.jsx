@@ -108,8 +108,6 @@ class App extends React.Component {
 
     axios.post('/ocean', { location: site.position })
       .then(({ data }) => {
-        console.log('data');
-        console.log(data);
         let max = 0;
         data.heights.datasets[0].data.forEach((value) => {
           if (value.y > max) {

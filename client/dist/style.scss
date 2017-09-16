@@ -91,6 +91,7 @@ WEATHER BOXES
 .scroll {
 overflow: hidden;
 padding-right: 0px;
+margin-left: -10px;
 }
 .left-col {
   max-height: 600px;
@@ -363,14 +364,6 @@ INFO-WINDOW
 Dive Site DIVE SITE INFO
 ================================================================================================
 */
-
-.wave-chart {
-  p {
-    font-size: 10px;
-    margin: 0;
-    padding: 0;
-  }
-}
 
 .label {
   font-size: 2px;

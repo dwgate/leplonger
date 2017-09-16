@@ -122,29 +122,32 @@ module.exports = {
       });
     },
     home: (req, res) => {
-      // async.parallel([
-      //   (callback) => {
-      //     models.weather.northernWeather((err, data) => {
-      //       callback(null, data);
-      //     });
-      //   },
-      //   (callback) => {
-      //     models.weather.centralWeather((err, data) => {
-      //       callback(null, data);
-      //     });
-      //   },
-      //   (callback) => {
-      //     models.weather.southernWeather((err, data) => {
-      //       callback(null, data);
-      //     });
-      //   },
-      // ], (err, results) => {
-      //   if (!err) {
-      //     res.send(results);
-      //   } else {
-      //     res.send(err, 'fuck');
-      //   }
-      // });
+      // uncomment for production
+      /*
+      async.parallel([
+        (callback) => {
+          models.weather.northernWeather((err, data) => {
+            callback(null, data);
+          });
+        },
+        (callback) => {
+          models.weather.centralWeather((err, data) => {
+            callback(null, data);
+          });
+        },
+        (callback) => {
+          models.weather.southernWeather((err, data) => {
+            callback(null, data);
+          });
+        },
+      ], (err, results) => {
+        if (!err) {
+          res.send(results);
+        } else {
+          res.send(err, 'fuck');
+        }
+      });
+      */
     },
   },
 

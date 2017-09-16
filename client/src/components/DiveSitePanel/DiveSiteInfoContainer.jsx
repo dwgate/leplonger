@@ -4,13 +4,15 @@ import OceanWeather from './OceanWeather.jsx';
 import SiteDescription from './SiteDescription.jsx';
 
 const DiveSiteInfoContainer = props => (
-  <div className="col-md-3 left-col">
-    <OceanWeather
-      bouy={props.bouy}
-      data={props.data}
-    />
-    <SurfaceWeather weatherdata={props.weatherdata} />
-    <SiteDescription description={props.description} />
+  <div className="col-md-3 scroll">
+    <div className="left-col">
+      <OceanWeather
+        bouy={props.bouy}
+        data={props.data}
+      />
+      <SurfaceWeather weatherdata={props.weatherdata} />
+      <SiteDescription description={props.description} />
+    </div>
   </div>
 );
 
