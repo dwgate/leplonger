@@ -78,7 +78,7 @@ class NewDiveSite extends React.Component {
 
         <div className="signup col-sm-12">
           <p> Description:
-            <input
+            <textarea
               className="user-input user-input-site"
               type="text"
               value={this.state.description}
