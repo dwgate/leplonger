@@ -19,8 +19,6 @@ class TopBar extends React.Component {
 
     this.openSignupModal = this.openSignupModal.bind(this);
     this.closeSignupModal = this.closeSignupModal.bind(this);
-
-    this.afterOpenSignupModal = this.afterOpenSignupModal.bind(this);
   }
 
   openModal() { this.setState({ modalIsOpen: true }); }
@@ -28,7 +26,6 @@ class TopBar extends React.Component {
   openLoginModal() { this.setState({ modalLogin: true }); }
   closeLoginModal() { this.setState({ modalLogin: false }); }
   openSignupModal() { this.setState({ modalSignup: true }); }
-  afterOpenSignupModal() { this.subtitle.style.color = '#777'; }
   closeSignupModal() { this.setState({ modalSignup: false }); }
 
   logOutFunc() {
@@ -82,7 +79,6 @@ class TopBar extends React.Component {
           <button className="cool-button" onClick={this.openSignupModal}>Sign Up</button>
           <Modal
             isOpen={this.state.modalSignup}
-            onAfterOpen={this.afterOpenSignupModal}
             onRequestClose={this.closeSignupModal}
             contentLabel="Signup Modal"
             style={{
@@ -118,22 +114,22 @@ class TopBar extends React.Component {
               contentLabel="Example Modal"
               style={{
                 overlay: {
-                  background: '#e5e5e5',
                   position: 'absolute',
                   top: '40px',
                   left: '1000px',
-                  height: 675,
+                  float: 'right',
+                  height: 0,
                 },
                 content: {
                   background: '#e5e5e5',
                   maxWidth: 1000,
-                  height: 600,
+                  height: 400,
                   color: '#a4b9f3',
                   right: '15px',
                 },
               }}
             >
-              <button className="cool-button" onClick={this.closeModal}>&times;</button>
+              <button className="cool-button exit" onClick={this.closeModal}>&times;</button>
               <NewDiveSite
                 newDiveSite={this.props.newDiveSite}
                 close={this.closeModal}

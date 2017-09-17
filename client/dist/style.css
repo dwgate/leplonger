@@ -30,7 +30,7 @@ body {
   background-size: 9%; }
 
 .panel-text h1, h2, h3, h4, h5, h6, tr, td {
-  color: #333333; }
+  color: #595959; }
 
 .cool-button {
   display: inline-block;
@@ -52,6 +52,8 @@ body {
     border-color: #8d8d8d;
     color: #8d8d8d;
     transition: background-color 0.3s ease-in, border-color 0.3s ease-in; }
+  .cool-button-addsite {
+    margin-top: 10px; }
 
 /*
 ================================================================================================
@@ -61,24 +63,27 @@ WEATHER BOXES
 .scroll {
   overflow: hidden;
   padding-right: 0px;
-  margin-left: -10px; }
+  margin-left: -5px;
+  margin-right: -14px; }
 
 .left-col {
-  max-height: 600px;
+  height: 600px;
   overflow: auto;
   overflow-x: hidden;
-  padding-left: 0; }
+  padding-left: 0;
+  padding-right: 10px; }
 
 .scroll-right {
   overflow: hidden;
-  padding-left: 0px;
+  padding: 0px;
   margin-right: -10px; }
 
 .right-col {
-  max-height: 600px;
+  height: 600px;
   overflow: auto;
   overflow-x: hidden;
-  padding-right: 0; }
+  padding-right: 0;
+  margin-right: -15px; }
 
 .comment-section {
   background-color: #ededed;
@@ -86,6 +91,7 @@ WEATHER BOXES
   border-left: none;
   border-right: none;
   margin-left: 10px;
+  padding: 5px;
   margin-bottom: 5px;
   transition: background-color 0.5s ease-out; }
   .comment-section:hover {
@@ -216,7 +222,7 @@ SIGNUP FORMS
 .loginSheet {
   align-items: center; }
 
-.login, .signup {
+.login, .signup, .divesite {
   border: none;
   width: 50%;
   margin: 0 auto; }
@@ -225,6 +231,13 @@ SIGNUP FORMS
   padding: 0 3px;
   margin: 4px 0;
   border-radius: 7px; }
+  .user-input-comment {
+    margin-top: 10px; }
+  .user-input-description {
+    clear: right;
+    width: 100%; }
+  .user-input-site {
+    clear: right; }
 
 select {
   height: 24px;
@@ -252,6 +265,12 @@ select {
 COMMENTS
 ================================================================================================
 */
+.add-comment {
+  margin-left: 10px; }
+
+.comment-button {
+  float: right; }
+
 .comment-container {
   width: 100%; }
 
@@ -263,10 +282,6 @@ COMMENTS
 .skill {
   font-weight: bold;
   color: #a4b9f3; }
-
-.dive-title {
-  display: inline-block;
-  color: red; }
 
 .new-dive-site {
   text-align: center;

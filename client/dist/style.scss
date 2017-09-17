@@ -52,7 +52,7 @@ body {
 }
 
 .panel-text h1, h2, h3, h4, h5, h6, tr, td {
-  color: lighten(black, 20%);
+  color: lighten(black, 35%);
 }
 
 .cool-button {
@@ -77,6 +77,10 @@ body {
     transition: background-color 0.3s ease-in,
     border-color 0.3s ease-in;
   }
+
+  &-addsite {
+    margin-top: 10px;
+  }
 }
 
 /*
@@ -87,26 +91,29 @@ WEATHER BOXES
 .scroll {
   overflow: hidden;
   padding-right: 0px;
-  margin-left: -10px;
+  margin-left: -5px;
+  margin-right: -14px;
 }
 
 .left-col {
-  max-height: 600px;
+  height: 600px;
   overflow: auto;
   overflow-x: hidden;
   padding-left: 0;
+  padding-right: 10px;
 }
 
 .scroll-right {
   overflow: hidden;
-  padding-left: 0px;
+  padding: 0px;
   margin-right: -10px;
 }
 .right-col {
-  max-height: 600px;
+  height: 600px;
   overflow: auto;
   overflow-x: hidden;
   padding-right: 0;
+  margin-right: -15px;
 }
 .comment-section {
   background-color: $water;
@@ -114,6 +121,7 @@ WEATHER BOXES
   border-left: none;
   border-right: none;
   margin-left: 10px;
+  padding: 5px;
   margin-bottom: 5px;
   transition: background-color 0.5s ease-out;
   &:hover {
@@ -270,7 +278,7 @@ SIGNUP FORMS
   align-items: center;
 }
 
-.login, .signup {
+.login, .signup, .divesite {
   border: none;
   width: 50%;
   margin: 0 auto;
@@ -280,6 +288,17 @@ SIGNUP FORMS
   padding: 0 3px;
   margin: 4px 0;
   border-radius: 7px;
+  &-comment {
+    margin-top: 10px;
+  }
+  &-description {
+    clear: right;
+    width: 100%;
+  }
+
+  &-site {
+    clear: right;
+  }
 }
 select {
   height: 24px;
@@ -313,6 +332,12 @@ COMMENTS
 ================================================================================================
 */
 
+.add-comment {
+  margin-left: 10px;
+}
+.comment-button {
+  float: right;
+}
 .comment-container {
   width: 100%;
 }
@@ -327,11 +352,6 @@ COMMENTS
 .skill {
   font-weight: bold;
   color: $whateverBlue;
-}
-
-.dive-title {
-  display: inline-block;
-  color: red;
 }
 
 .new-dive-site {
