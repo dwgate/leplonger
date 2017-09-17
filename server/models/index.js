@@ -61,14 +61,24 @@ module.exports = {
   },
 
   comments: {
-    get: (req) => {
-      const diveID = req.body.diveSite_id;
-      const queryString = `SELECT * FROM comments INNER JOIN dives ON dives.id=comments.divesite_id LEFT JOIN users ut on comments.user_id = ut.id WHERE comments.divesite_id=${diveID}`;
-      return connection.queryAsync(queryString);
+    get: (diveSiteId, callback) => {
+      const queryString = `
+      SELECT * FROM comments
+      INNER JOIN dives ON dives.id=comments.divesite_id
+      LEFT JOIN users ut on comments.user_id = ut.id
+      WHERE comments.divesite_id=${diveSiteId}`;
+      connection.query(queryString, (err, data) => {
+        if (err) {
+          console.log('Error retrieving comments: ', err);
+          callback(err, null);
+        } else {
+          callback(null, data);
+        }
+      });
     },
     post: (comment, callback) => {
-      const newComment = [comment.divesiteId, comment.message, comment.userId, comment.date1];
-      const queryString = 'INSERT INTO comments(divesiteId, message, userId, date1 ) VALUES(?,?,?,?)';
+      const newComment = [comment.divesite_id, comment.message, comment.userId, comment.date1];
+      const queryString = 'INSERT INTO comments(divesite_Id, message, user_id, date_1 ) VALUES(?,?,?,?)';
       connection.query(queryString, newComment, (err, data) => {
         if (err) {
           callback(err, null);
@@ -92,29 +102,42 @@ module.exports = {
           callback(err, null);
         });
     },
-    home: (callback) => {
-      let homeWeather = [];
+    northernWeather: (callback) => {
       const norCalCoordinates = '37.7910,-122.5401';
-      const centralCalCoordinates = '35.3257,-120.9237';
-      const southCalCoordinates = '37.8267,-122.4233';
 
       axios.get(`https://api.darksky.net/forecast/${Api.darkSky}/${norCalCoordinates}`)
-        .then(({ data }) => {
-          homeWeather.push(data);
-          axios.get(`https://api.darksky.net/forecast/${Api.darkSky}/${centralCalCoordinates}`)
-            .then(({ data2 }) => {
-              homeWeather.push(data2);
-              axios.get(`https://api.darksky.net/forecast/${Api.darkSky}/${southCalCoordinates}`)
-                .then(({ data3 }) => {
-                  homeWeather.push(data3);
-                  callback(null, homeWeather);
-                });
-            });
-        })
-        .catch((err) => {
-          console.log('Error retrieving home page weather: ', err.message);
-          callback(err, null);
-        });
+      .then(({ data }) => {
+        callback(null, data);
+      })
+      .catch((err) => {
+        console.log('Error retrieving Norhtern California Weather: ', err.message);
+        callback(err, null);
+      });
+    },
+    centralWeather: (callback) => {
+      const centralCalCoordinates = '35.3257,-120.9237';
+
+      axios.get(`https://api.darksky.net/forecast/${Api.darkSky}/${centralCalCoordinates}`)
+      .then(({ data }) => {
+        callback(null, data);
+      })
+      .catch((err) => {
+        console.log('Error retrieving Central California Weather: ', err.message);
+        callback(err, null);
+      });
+    },
+    southernWeather: (callback) => {
+      console.log('attempting to gather South Cal weather');
+      const southCalCoordinates = '37.8267,-122.4233';
+
+      axios.get(`https://api.darksky.net/forecast/${Api.darkSky}/${southCalCoordinates}`)
+      .then(({ data }) => {
+        callback(null, data);
+      })
+      .catch((err) => {
+        console.log('Error retrieving Norhtern California Weather: ', err.message);
+        callback(err, null);
+      });
     },
   },
 
@@ -128,8 +151,6 @@ module.exports = {
 
       axios.get(`http://www.ndbc.noaa.gov/data/realtime2/${bouyId}.txt`)
         .then((result) => {
-          // const toFormat = result.data.split('\n').slice(0, 14);
-          // COMMENTED OUT because what the hell is it even doing
           const waveHeights = visUtils.formatData(result.data, 'WVHT');
           callback(null, { heights: waveHeights, id: bouyId });
         })

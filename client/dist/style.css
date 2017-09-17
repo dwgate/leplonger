@@ -1,6 +1,13 @@
 /*
 ================================================================================================
+run: sass style.scss style.css
+in terminal to compile to css
 VARIABLES
+================================================================================================
+*/
+/*
+================================================================================================
+MIXINS
 ================================================================================================
 */
 /*
@@ -8,17 +15,9 @@ VARIABLES
 GLOBAL STYLES
 ================================================================================================
 */
-html {
-  height: 100%; }
-
 body {
   height: 100%;
-  overflow-x: hidden;
-  background-image: url("3.jpg");
-  background-repeat: no-repeat;
-  background-position: right top;
-  background-attachment: fixed;
-  background-size: 100%; }
+  background-color: #ededed; }
 
 .col-headers {
   color: #082d8e; }
@@ -31,72 +30,139 @@ body {
   background-size: 9%; }
 
 .panel-text h1, h2, h3, h4, h5, h6, tr, td {
-  color: black; }
+  color: #595959; }
 
 .cool-button {
   display: inline-block;
-  width: 200px;
+  width: 120px;
   padding: 8px;
-  color: #fff;
+  color: #c0c0c0;
   border: 2px solid #fff;
   text-align: center;
   outline: none;
   text-decoration: none;
-  background-color: rgba(255, 255, 255, 0.25);
-  transition: background-color 0.2s ease-out, border-color 0.2s ease-out; }
+  background-color: #f7f7f7;
+  transition: background-color 0.2s ease-out, border-color 0.2s ease-out, color 0.2s ease-out; }
   .cool-button:hover, .cool-button:active {
     background-color: #fff;
     /* fallback */
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: white;
     border-color: #fff;
     /* fallback */
-    border-color: rgba(255, 255, 255, 0.4);
+    border-color: #8d8d8d;
+    color: #8d8d8d;
     transition: background-color 0.3s ease-in, border-color 0.3s ease-in; }
+  .cool-button-addsite {
+    margin-top: 10px; }
 
 /*
 ================================================================================================
 WEATHER BOXES
 ================================================================================================
 */
+.scroll {
+  overflow: hidden;
+  padding-right: 0px;
+  margin-left: -5px;
+  margin-right: -14px; }
+
 .left-col {
-  max-height: 600px;
-  overflow: scroll;
-  background-color: rgba(255, 255, 255, 0.25);
-  margin: 0 5px 0 -6px;
-  padding-left: 0; }
+  height: 600px;
+  overflow: auto;
+  overflow-x: hidden;
+  padding-left: 0;
+  padding-right: 10px; }
+
+.scroll-right {
+  overflow: hidden;
+  padding: 0px;
+  margin-right: -10px; }
+
+.right-col {
+  height: 600px;
+  overflow: auto;
+  overflow-x: hidden;
+  padding-right: 0;
+  margin-right: -15px; }
+
+.comment-section {
+  background-color: #ededed;
+  border: 1px solid grey;
+  border-left: none;
+  border-right: none;
+  margin-left: 10px;
+  padding: 5px;
+  margin-bottom: 5px;
+  transition: background-color 0.5s ease-out; }
+  .comment-section:hover {
+    background-color: white;
+    border-color: black;
+    transition-property: background-color, border-color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in; }
+    .comment-section:hover > p {
+      color: #8d8d8d; }
+  .comment-section p {
+    color: #dfdbdb;
+    transition: color 0.5s ease-out; }
+  .comment-section:first-child {
+    border-top: none; }
+  .comment-section:last-child {
+    border-bottom: none; }
 
 .weather-section {
-  background-color: rgba(63, 68, 119, 0.75);
+  background-color: #ededed;
   min-height: 200px;
   overflow: hidden;
   margin: 0 0 5px 0;
   padding-top: 0;
   width: 107%;
-  padding-right: 15px; }
+  padding-right: 15px;
+  border: 1px solid grey;
+  border-left: none;
+  transition: background-color 0.5s ease-out; }
+  .weather-section:hover {
+    background-color: white;
+    border-color: black;
+    color: #8d8d8d;
+    transition-property: background-color, border-color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in; }
+    .weather-section:hover > table > tbody > tr > td > img {
+      opacity: 1.0;
+      transition: opacity 0.3s ease-in; }
+    .weather-section:hover > p, .weather-section:hover .surface-table {
+      color: #8d8d8d;
+      transition: color 0.3s ease-in; }
   .weather-section h3 {
     margin: 2px 0 5px 0;
     padding: 0; }
   .weather-section p {
-    color: #dfdbdb; }
+    color: #dfdbdb;
+    transition: color 0.5s ease-out; }
+  .weather-section:first-child {
+    border-top: none; }
+  .weather-section:last-child {
+    border-bottom: none; }
+  .weather-section .surface-table {
+    color: #dfdbdb;
+    transition: color 0.5s ease-out; }
 
 .pannel img {
   width: 60px; }
 
 .forecast {
   font-size: 1.8rem;
-  margin-right: 10px;
-  color: #ffffff; }
+  margin-right: 10px; }
 
 .temp {
-  font-size: 2rem;
-  color: #f94040; }
+  font-size: 2rem; }
 
 .panel {
   background-color: none; }
 
-.data {
-  color: #a4b9f3;
-  font-weight: bold; }
+.data, .info, .about {
+  color: #a4b9f3; }
 
 .weather-box {
   vertical-align: top;
@@ -104,13 +170,12 @@ WEATHER BOXES
   font-size: 10px; }
 
 .weather-img {
-  display: block; }
+  display: block;
+  opacity: 0.2;
+  transition: opacity 0.5s ease-out; }
 
 .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
   padding: 0px; }
-
-.info {
-  color: #a4b9f3; }
 
 /*
 ================================================================================================
@@ -120,10 +185,8 @@ CENTRAL MAP
 .map-section {
   min-height: 600px;
   height: 100%;
-  padding: 0; }
-
-#map {
-  background-color: red; }
+  padding: 0;
+  box-shadow: 0px 5px 10px 0px #8d8d8d; }
 
 .map-container {
   padding: 0; }
@@ -135,8 +198,9 @@ LOGIN FORMS
 */
 .loginForm {
   float: right;
-  padding: 20px;
-  border: none; }
+  border: none;
+  padding: 15px;
+  padding-left: 7.5px; }
 
 input {
   color: black; }
@@ -146,43 +210,71 @@ input {
 SIGNUP FORMS
 ================================================================================================
 */
-.signinForm {
-  float: right;
-  padding: 20px;
-  border: none; }
+.menu {
+  padding: 0; }
 
-.add_dive_site {
+.signinForm, .add_dive_site {
   float: right;
-  padding-right: 30px;
-  margin-top: 20px;
-  border: none; }
+  border: none;
+  padding: 15px;
+  padding-right: 7.5px; }
 
 .loginSheet {
   align-items: center; }
 
-.loginUserName {
-  border: none; }
+.login, .signup, .divesite {
+  border: none;
+  width: 50%;
+  margin: 0 auto; }
 
-.input-boxes {
-  display: inline;
-  text-align: right;
-  margin-top: 5px;
-  margin-bottom: 5px; }
+.user-input {
+  padding: 0 3px;
+  margin: 4px 0;
+  border-radius: 7px; }
+  .user-input-comment {
+    margin-top: 10px; }
+  .user-input-description {
+    clear: right;
+    width: 100%; }
+  .user-input-site {
+    clear: right; }
 
-.junk {
-  background-color: red; }
+select {
+  height: 24px;
+  width: 120%;
+  color: #8d8d8d; }
 
-/*y tho*/
+.exit {
+  width: 60px; }
+
+.form-button {
+  margin-left: 35%;
+  margin-right: 35%; }
+
+.signup {
+  margin-top: 10px; }
+  .signup p {
+    color: #8d8d8d;
+    margin: 0;
+    margin-bottom: -5px; }
+  .signup-button {
+    margin: 10px 32%; }
+
 /*
 ================================================================================================
 COMMENTS
 ================================================================================================
 */
+.add-comment {
+  margin-left: 10px; }
+
+.comment-button {
+  float: right; }
+
 .comment-container {
   width: 100%; }
 
 .review-title {
-  background-color: rgba(63, 68, 119, 0.75);
   margin: 0;
   padding: 10px 5px;
   text-align: center; }
@@ -190,10 +282,6 @@ COMMENTS
 .skill {
   font-weight: bold;
   color: #a4b9f3; }
-
-.dive-title {
-  display: inline-block;
-  color: red; }
 
 .new-dive-site {
   text-align: center;
@@ -209,12 +297,10 @@ COMMENTS
 .reviews-section {
   height: 600px;
   overflow: auto;
-  background-color: rgba(255, 255, 255, 0.25);
   margin: 0 -6px 0 5px;
   padding: 0px; }
 
 .comment {
-  background-color: rgba(63, 68, 119, 0.75);
   padding: 7px;
   margin: 5px 0; }
   .comment-right p {
@@ -241,6 +327,9 @@ INFO-WINDOW
   max-width: 200px;
   margin-top: 10px; }
 
+.description {
+  padding-right: 15px; }
+
 .more {
   display: inline; }
 
@@ -251,33 +340,8 @@ INFO-WINDOW
 
 /*
 ================================================================================================
-Dive Site DIVE SITE INFO
+DIVE SITE INFO
 ================================================================================================
 */
-.wave-chart {
-  background-color: rgba(63, 68, 119, 0.75); }
-  .wave-chart p {
-    font-size: 10px;
-    margin: 0;
-    padding: 0; }
-
-.label {
-  font-size: 2px; }
-
-.about {
-  color: #a4b9f3; }
-
-.chart-title {
-  color: red;
-  background-color: rgba(63, 68, 119, 0.75); }
-
-.leplonger {
-  width: 107%;
-  background-color: rgba(63, 68, 119, 0.75);
-  color: #a4b9f3;
-  margin: 0 0 5px 0;
-  text-align: center;
-  margin-left: -6px;
-  padding: 10px 5px; }
 
 /*# sourceMappingURL=style.css.map */

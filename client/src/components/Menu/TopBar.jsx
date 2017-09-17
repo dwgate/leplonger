@@ -19,8 +19,6 @@ class TopBar extends React.Component {
 
     this.openSignupModal = this.openSignupModal.bind(this);
     this.closeSignupModal = this.closeSignupModal.bind(this);
-
-    this.afterOpenSignupModal = this.afterOpenSignupModal.bind(this);
   }
 
   openModal() { this.setState({ modalIsOpen: true }); }
@@ -28,7 +26,6 @@ class TopBar extends React.Component {
   openLoginModal() { this.setState({ modalLogin: true }); }
   closeLoginModal() { this.setState({ modalLogin: false }); }
   openSignupModal() { this.setState({ modalSignup: true }); }
-  afterOpenSignupModal() { this.subtitle.style.color = '#777'; }
   closeSignupModal() { this.setState({ modalSignup: false }); }
 
   logOutFunc() {
@@ -52,59 +49,56 @@ class TopBar extends React.Component {
             <Modal
               isOpen={this.state.modalLogin}
               onRequestClose={this.closeLoginModal}
-              contentLabel="Example Modal"
+              contentLabel="Login Modal"
               style={{
                 overlay: {
-                  background: 'rgba(255, 255, 255, 0.4)',
                   position: 'absolute',
                   top: '40px',
                   left: '1000px',
-                  height: 675,
+                  float: 'right',
+                  height: 0,
                 },
                 content: {
-                  background: 'rgba(63, 68, 119, 0.80)',
+                  background: '#e5e5e5',
                   maxWidth: 1000,
-                  height: 600,
+                  height: 200,
                   color: '#a4b9f3',
-                  right: '15px',
+                  right: '30px',
                 },
               }}
             >
-              <button className="cool-button" onClick={this.closeLoginModal}>&times;</button>
-              <h2>Log in</h2>
+              <button className="cool-button exit" onClick={this.closeLoginModal}>&times;</button>
               <Login
                 logIn={this.props.logIn}
                 close={this.closeLoginModal}
               />
             </Modal>
           </div> }
-        {this.props.user ? null :
+        {!this.props.user &&
         <div className="signinForm" >
           <button className="cool-button" onClick={this.openSignupModal}>Sign Up</button>
           <Modal
             isOpen={this.state.modalSignup}
-            onAfterOpen={this.afterOpenSignupModal}
             onRequestClose={this.closeSignupModal}
-            contentLabel="Example Modal"
+            contentLabel="Signup Modal"
             style={{
               overlay: {
-                background: 'rgba(255, 255, 255, 0.4)',
                 position: 'absolute',
                 top: '40px',
                 left: '1000px',
-                height: 675,
+                float: 'right',
+                height: 0,
               },
               content: {
-                background: 'rgba(63, 68, 119, 0.80)',
+                background: '#e5e5e5',
                 maxWidth: 1000,
-                height: 600,
+                height: 400,
                 color: '#a4b9f3',
-                right: '15px',
+                right: '30px',
               },
             }}
           >
-            <button className="cool-button" onClick={this.closeSignupModal}>&times;</button>
-            <h2>Sign Up</h2>
+            <button className="cool-button exit" onClick={this.closeSignupModal}>&times;</button>
             <Signup
               new_users={this.props.new_users}
               closeModal={this.closeSignupModal}
@@ -120,22 +114,22 @@ class TopBar extends React.Component {
               contentLabel="Example Modal"
               style={{
                 overlay: {
-                  background: 'rgba(255, 255, 255, 0.4)',
                   position: 'absolute',
                   top: '40px',
                   left: '1000px',
-                  height: 675,
+                  float: 'right',
+                  height: 0,
                 },
                 content: {
-                  background: 'rgba(63, 68, 119, 0.80)',
+                  background: '#e5e5e5',
                   maxWidth: 1000,
-                  height: 600,
+                  height: 400,
                   color: '#a4b9f3',
                   right: '15px',
                 },
               }}
             >
-              <button className="cool-button" onClick={this.closeModal}>&times;</button>
+              <button className="cool-button exit" onClick={this.closeModal}>&times;</button>
               <NewDiveSite
                 newDiveSite={this.props.newDiveSite}
                 close={this.closeModal}

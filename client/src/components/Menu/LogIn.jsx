@@ -24,32 +24,31 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className="col-md-12">
-        <div className="col-md-6">
-          <div className="loginUserName">
-            Username:
-            <input
-              type="text"
-              value={this.state.value}
-              onChange={this.handleChange}
-            />
-          </div>
+      <div>
+        <div className="login">
+          <input
+            placeholder="Username"
+            className="user-input"
+            type="text"
+            value={this.state.value}
+            onChange={this.handleChange}
+          />
         </div>
-        <div className="col-md-6">
-          <div className="loginUserName">
-            Password:
-            <input
-              type="password"
-              value={this.state.password}
-              onChange={this.handlePassword}
-            />
-          </div>
+        <div className="login">
+          <input
+            placeholder="Password"
+            className="user-input"
+            type="password"
+            value={this.state.password}
+            onChange={this.handlePassword}
+          />
         </div>
-        <div className="col-md-12 btn-ctr">
+        <div className="login">
           <button
             className="cool-button"
             onClick={() => this.props.logIn(this.state.value, this.state.password)}
-          >Sign In </button>
+          >Sign In
+          </button>
         </div>
       </div>
     );

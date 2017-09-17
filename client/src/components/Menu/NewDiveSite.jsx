@@ -37,65 +37,57 @@ class NewDiveSite extends React.Component {
 
   render() {
     return (
-      <div className="new-dive-site">
-        <h2 className="dive-title"> Add Dive Site Here </h2>
-        <p> Name:
+      <div>
+        <div className="signup col-sm-6">
+          <p>Name:</p>
           <input
+            className="user-input"
             type="text"
             value={this.state.name}
             onChange={this.handleName}
-          /></p>
-
-        <p> Longitude:
-          <input
-            type="text"
-            value={this.state.longitude}
-            onChange={this.handleLongitude}
           />
-        </p>
+        </div>
+        <div className="signup col-sm-6">
+          <p>Difficulty:</p>
+          <select className="user-input" onChange={this.handleSkill}>
+            <option className="user-input" value="Beginner">Beginner</option>
+            <option className="user-input" value="Intermediate">Intermediate</option>
+            <option className="user-input" value="Advanced">Advanced</option>
+          </select>
+        </div>
 
-        <p> Latitude:
+        <div className="signup col-sm-6">
+          <p>Latitude:</p>
           <input
+            className="user-input"
             type="text"
             value={this.state.latitude}
             onChange={this.handleLatitude}
           />
-        </p>
+        </div>
+        <div className="signup col-sm-6">
+          <p>Longitude:</p>
+            <input
+              className="user-input"
+              type="text"
+              value={this.state.longitude}
+              onChange={this.handleLongitude}
+            />
+        </div>
 
-        <p className="dive_site_rating"> Rating: </p>
-        <p className="dive_site_rating">
-          <input
-            type="radio"
-            name="expirience"
-            value="Novice"
-            onChange={this.handleRating}
-          /> Novice
-        </p>
-        <p className="dive_site_rating">
-          <input
-            type="radio"
-            name="expirience"
-            value="Intermediate"
-            onChange={this.handleRating}
-          /> Intermediate
-        </p>
-        <p className="dive_site_rating">
-          <input
-            type="radio"
-            name="expirience"
-            value="Advanced"
-            onChange={this.handleRating}
-          /> Advanced
-        </p>
-        <p> Description:
-          <input
-            type="text"
-            value={this.state.description}
-            onChange={this.handleDescription}
-          />
-        </p>
 
-        <button className="cool-button" onClick={() => this.handleClick()}>Add Site</button>
+        <div className="signup col-sm-12">
+          <p> Description:
+            <textarea
+              className="user-input user-input-site"
+              type="text"
+              value={this.state.description}
+              onChange={this.handleDescription}
+            />
+          </p>
+          <button className="cool-button cool-button-addsite" onClick={() => this.handleClick()}>Add Site</button>
+        </div>
+
       </div>
     );
   }

@@ -1,33 +1,42 @@
 /*
 ================================================================================================
-VARIABLES
 run: sass style.scss style.css
-in terminal to create css file
+in terminal to compile to css
+VARIABLES
 ================================================================================================
 */
 $whateverBlue: #a4b9f3;
+$water: #ededed;
+$darkgrey: #e5e5e5;
+$lightgrey: #f7f7f7;
+$hoverText: darken(#c0c0c0, 20%);
 
+/*
+================================================================================================
+MIXINS
+================================================================================================
+*/
+@mixin hoverTransition($properties, $duration: 0.3s) {
+  transition-property: $properties;
+  transition-duration: $duration;
+  transition-timing-function: ease-in;
+}
 
-
+@mixin balancePadding($padding, $side) {
+  padding: $padding;
+  @if ($side) {
+    padding-#{$side}: #{$padding/2px}px;
+  }
+}
 /*
 ================================================================================================
 GLOBAL STYLES
 ================================================================================================
 */
 
-
-html {
-  height: 100%;
-}
-
 body {
   height: 100%;
-  overflow-x:hidden;
-  background-image: url('3.jpg');
-  background-repeat: no-repeat;
-  background-position: right top;
-  background-attachment: fixed;
-  background-size: 100%;
+  background-color: $water;
 }
 
 .col-headers {
@@ -41,29 +50,36 @@ body {
   background-attachment: fixed;
   background-size: 9%;
 }
+
 .panel-text h1, h2, h3, h4, h5, h6, tr, td {
-  color: black;
+  color: lighten(black, 35%);
 }
 
 .cool-button {
   display: inline-block;
-  width: 200px;
+  width: 120px;
   padding: 8px;
-  color: #fff;
+  color: #c0c0c0;
   border: 2px solid #fff;
   text-align: center;
   outline: none;
   text-decoration: none;
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: $lightgrey;
   transition: background-color 0.2s ease-out,
-  border-color 0.2s ease-out;
+              border-color 0.2s ease-out,
+              color 0.2s ease-out;
   &:hover, &:active {
     background-color: #fff; /* fallback */
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: white;
     border-color: #fff; /* fallback */
-    border-color: rgba(255, 255, 255, 0.4);
+    border-color: $hoverText;
+    color: $hoverText;
     transition: background-color 0.3s ease-in,
     border-color 0.3s ease-in;
+  }
+
+  &-addsite {
+    margin-top: 10px;
   }
 }
 
@@ -72,48 +88,128 @@ body {
 WEATHER BOXES
 ================================================================================================
 */
+.scroll {
+  overflow: hidden;
+  padding-right: 0px;
+  margin-left: -5px;
+  margin-right: -14px;
+}
+
 .left-col {
-  max-height: 600px;
-  overflow: scroll;
-  background-color: rgba(255, 255, 255, 0.25);
-  margin: 0 5px 0 -6px;
+  height: 600px;
+  overflow: auto;
+  overflow-x: hidden;
   padding-left: 0;
+  padding-right: 10px;
+}
+
+.scroll-right {
+  overflow: hidden;
+  padding: 0px;
+  margin-right: -10px;
+}
+.right-col {
+  height: 600px;
+  overflow: auto;
+  overflow-x: hidden;
+  padding-right: 0;
+  margin-right: -15px;
+}
+.comment-section {
+  background-color: $water;
+  border: 1px solid grey;
+  border-left: none;
+  border-right: none;
+  margin-left: 10px;
+  padding: 5px;
+  margin-bottom: 5px;
+  transition: background-color 0.5s ease-out;
+  &:hover {
+    background-color: white;
+    border-color: black;
+    $props: background-color,border-color;
+    @include hoverTransition($props);
+    >p {
+      color: $hoverText;
+    }
+  }
+  p {
+    color: #dfdbdb;
+    transition: color 0.5s ease-out;
+  }
+  &:first-child {
+    border-top: none;
+  }
+  &:last-child {
+    border-bottom: none;
+  }
 }
 .weather-section {
-  background-color: rgba(63, 68, 119, 0.75);
+  background-color: $water;
 	min-height: 200px;
   overflow: hidden;
   margin: 0 0 5px 0;
   padding-top: 0;
   width: 107%;
   padding-right: 15px;
+  border: 1px solid grey;
+  border-left: none;
+  transition: background-color 0.5s ease-out;
+  &:hover {
+    background-color: white;
+    border-color: black;
+    color: $hoverText;
+
+    $props: background-color,border-color;
+    @include hoverTransition($props);
+
+    >table >tbody >tr >td >img {
+      opacity: 1.0;
+      transition: opacity 0.3s ease-in;
+    }
+    >p, .surface-table {
+      color: $hoverText;
+      transition: color 0.3s ease-in;
+    }
+  }
+
   h3 {
     margin: 2px 0 5px 0;
     padding: 0;
   }
   p {
     color: #dfdbdb;
+    transition: color 0.5s ease-out;
+  }
+  &:first-child {
+    border-top: none;
+  }
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .surface-table {
+    color: #dfdbdb;
+    transition: color 0.5s ease-out;
   }
 }
+
 .pannel img {
   width: 60px;
 }
 .forecast {
   font-size: 1.8rem;
   margin-right: 10px;
-  color: #ffffff;
 }
 .temp {
   font-size: 2rem;
-  color: #f94040;
 }
 
 .panel {
   background-color: none;
 }
-.data {
+.data, .info, .about {
   color: $whateverBlue;
-  font-weight: bold;
 }
 
 .weather-box {
@@ -121,15 +217,14 @@ WEATHER BOXES
   display: block;
   font-size: 10px;
 }
+
 .weather-img {
   display: block;
+  opacity: 0.2;
+  transition: opacity 0.5s ease-out;
 }
 .table> tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
     padding: 0px;
-}
-
-.info {
-  color: $whateverBlue;
 }
 /*
 ================================================================================================
@@ -141,17 +236,12 @@ CENTRAL MAP
 	min-height: 600px;
   height: 100%;
   padding: 0;
-}
-
-#map {
-  background-color: red;
+  box-shadow: 0px 5px 10px 0px $hoverText;
 }
 
 .map-container {
   padding: 0;
 }
-
-
 
 /*
 ================================================================================================
@@ -161,8 +251,8 @@ LOGIN FORMS
 
 .loginForm {
 	float: right;
-  padding: 20px;
   border: none;
+  @include balancePadding(15px, left);
 }
 
 input {
@@ -174,36 +264,68 @@ SIGNUP FORMS
 ================================================================================================
 */
 
-.signinForm {
-  float: right;
-  padding: 20px;
-  border: none;
+.menu {
+  padding: 0;
 }
 
-.add_dive_site {
+.signinForm, .add_dive_site {
   float: right;
-  padding-right: 30px;
-  margin-top: 20px;
   border: none;
+  @include balancePadding(15px, right);
 }
 
 .loginSheet {
   align-items: center;
 }
 
-.loginUserName {
+.login, .signup, .divesite {
   border: none;
+  width: 50%;
+  margin: 0 auto;
 }
-.input-boxes {
-  display:inline;
-  text-align:right;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-.junk {
-  background-color: red;
-}/*y tho*/
 
+.user-input {
+  padding: 0 3px;
+  margin: 4px 0;
+  border-radius: 7px;
+  &-comment {
+    margin-top: 10px;
+  }
+  &-description {
+    clear: right;
+    width: 100%;
+  }
+
+  &-site {
+    clear: right;
+    height: 25px;
+  }
+}
+select {
+  height: 24px;
+  width: 120%;
+  color: $hoverText;
+}
+.exit {
+  width: 60px;
+}
+
+.form-button {
+  margin-left: 35%;
+  margin-right: 35%;
+}
+
+.signup {
+  margin-top: 10px;
+  p {
+    color: $hoverText;
+    margin: 0;
+    margin-bottom: -5px;
+  }
+  &-button {
+    margin: 10px 32%;
+  }
+}
 
 /*
 ================================================================================================
@@ -211,12 +333,17 @@ COMMENTS
 ================================================================================================
 */
 
+.add-comment {
+  margin-left: 10px;
+}
+.comment-button {
+  float: right;
+}
 .comment-container {
   width: 100%;
 }
 
 .review-title {
-  background-color: rgba(63, 68, 119, 0.75);
   margin: 0;
   padding: 10px 5px;
   text-align: center;
@@ -226,11 +353,6 @@ COMMENTS
 .skill {
   font-weight: bold;
   color: $whateverBlue;
-}
-
-.dive-title {
-  display: inline-block;
-  color: red;
 }
 
 .new-dive-site {
@@ -250,13 +372,11 @@ COMMENTS
 .reviews-section {
   height: 600px;
   overflow: auto;
-  background-color: rgba(255, 255, 255, 0.25);
   margin: 0 -6px 0 5px;
   padding: 0px;
 }
 
 .comment {
-  background-color: rgba(63, 68, 119, 0.75);
   padding: 7px;
   margin: 5px 0;
   &-right p {
@@ -270,7 +390,6 @@ COMMENTS
 .no-comment {
   margin-left: 10px;
 }
-
 
 /*
 ================================================================================================
@@ -292,6 +411,9 @@ INFO-WINDOW
   margin-top: 10px;
 }
 
+.description {
+  padding-right: 15px;
+}
 
 .more {
   display: inline;
@@ -304,40 +426,6 @@ INFO-WINDOW
 
 /*
 ================================================================================================
-Dive Site DIVE SITE INFO
+DIVE SITE INFO
 ================================================================================================
 */
-
-.wave-chart {
-  background-color: rgba(63, 68, 119, 0.75);
-  p {
-    font-size: 10px;
-    margin: 0;
-    padding: 0;
-  }
-}
-
-.label {
-  font-size: 2px;
-}
-
-.about {
-  color: $whateverBlue;
-}
-
-.chart-title {
-  color: red;
-  background-color: rgba(63, 68, 119, 0.75);
-}
-
-.leplonger {
-  width: 107%;
-  background-color: rgba(63, 68, 119, 0.75);
-  color: $whateverBlue;
-  margin: 0 0 5px 0;
-  text-align: center;
-  margin-left: -6px;
-  padding: 10px 5px;
-}
-
-

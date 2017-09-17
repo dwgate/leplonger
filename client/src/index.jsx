@@ -89,6 +89,8 @@ class App extends React.Component {
 
     axios.post('/comments', { diveSite_id: site.id })
       .then((response) => {
+        console.log('COMMENTS\n\n\n');
+        console.log(response);
         this.setState({
           commentdata: response.data,
         });
@@ -108,8 +110,6 @@ class App extends React.Component {
 
     axios.post('/ocean', { location: site.position })
       .then(({ data }) => {
-        console.log('data');
-        console.log(data);
         let max = 0;
         data.heights.datasets[0].data.forEach((value) => {
           if (value.y > max) {
@@ -236,7 +236,8 @@ class App extends React.Component {
     return (
       <div className="container-fluid">
         <div className="row app-container">
-          <div>
+          <div className="col-md-9" />
+          <div className="menu col-md-3">
             <TopBar
               newDiveSite={this.addNewDiveSite}
               new_users={this.new_users}
@@ -271,17 +272,14 @@ class App extends React.Component {
             toggleInfoWindow={this.toggleInfoWindow}
             getWeather={this.getDiveSiteInfo}
           />
-
-          <div className="col-md-3 reviews-section">
-            {this.state.diveview &&
-              <CommentContainer
-                user={this.state.user}
-                currentsite={this.state.currentsite}
-                comments={this.state.commentdata}
-                addNewComment={this.addNewDiveSiteComment}
-              />
-            }
-          </div>
+          {this.state.diveview &&
+            <CommentContainer
+              user={this.state.user}
+              currentsite={this.state.currentsite}
+              comments={this.state.commentdata}
+              addNewComment={this.addNewDiveSiteComment}
+            />
+          }
 
         </div>
 
